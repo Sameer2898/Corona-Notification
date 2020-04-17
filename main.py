@@ -20,7 +20,7 @@ if __name__ == "__main__":
         myHtmlData = getData('https://www.mohfw.gov.in/')
         soup = BeautifulSoup(myHtmlData, 'html.parser')
         myDataStr = ''
-        for tr in soup.find_all('tbody')[1].find_all('tr'):
+        for tr in soup.find_all('tbody')[0].find_all('tr'):
             myDataStr += tr.get_text()
         myDataStr = myDataStr[1:]
         itemList = myDataStr.split('\n\n')
@@ -30,7 +30,7 @@ if __name__ == "__main__":
             dataList = item.split('\n')
             if dataList[1] in states:
                 nTitle = 'Case Of COVID-19'
-                nText = f'State:- {dataList[1]}\nIndia:- {dataList[2]} and Foreign:- {dataList[3]}\nCured:- {dataList[4]}\nDeaths:- {dataList[5]}'
+                nText = f'State:- {dataList[1]}\nTotal Cases:- {dataList[2]}\nCured:- {dataList[3]}\nDeaths:- {dataList[4]}'
                 notifyMe(nTitle, nText)
                 time.sleep(2)
-        time.sleep(3600) 
+        time.sleep(3600)
